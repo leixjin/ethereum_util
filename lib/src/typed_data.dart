@@ -3,6 +3,7 @@ import 'dart:typed_data';
 
 import 'package:buffer/buffer.dart';
 import 'package:convert/convert.dart';
+import 'package:ethereum_util/ethereum_util.dart';
 import 'package:ethereum_util/src/abi.dart' as ethAbi;
 import 'package:ethereum_util/src/bytes.dart';
 import 'package:ethereum_util/src/signature.dart';
@@ -176,6 +177,7 @@ class TypedDataUtils {
       if (value != null) {
         if (field.type == 'bytes') {
           encodedTypes.add('bytes32');
+          value = toBuffer(value);
           value = sha3(value);
           encodedValues.add(value);
         } else if (field.type == 'string') {
