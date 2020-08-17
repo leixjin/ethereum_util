@@ -6,8 +6,10 @@ import 'package:quiver/check.dart';
 
 bool isHexPrefixed(String str) {
   checkNotNull(str);
-
-  return str.substring(0, 2) == '0x';
+  if (str.length >= 2) {
+    return str.substring(0, 2) == '0x';
+  }
+  return false;
 }
 
 String stripHexPrefix(String str) {
